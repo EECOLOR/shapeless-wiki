@@ -171,7 +171,7 @@ foo: Foo = Foo(23,bar)
 
 scala> foo.productElements
 res1: Int :: String :: HNil = 23 :: bar :: HNil
-``` 
+```
 
 ### 6. Conversions between functions and HList functions
 
