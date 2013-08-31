@@ -1,7 +1,7 @@
 <!-- --- title: Migration guide: shapeless 1.2.4 to 2.0.0 -->
 
 Details on the changes required to update your code follow. You might also find the complete set of differences in
-shapeless's examples and tests between 1.2.4 and 2.0.0 a useful guide to what's involved in updating. They and can be
+shapeless's examples and tests between 1.2.4 and 2.0.0 a useful guide to what's involved in updating. They can be
 found in [this commit][delta].
 
 [delta]: https://github.com/milessabin/shapeless/commit/d33938d65acb2aafae7b89df9dd52a955a0c9c8c
