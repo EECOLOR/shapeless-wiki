@@ -6,9 +6,25 @@ found in [this commit][delta].
 
 [delta]: https://github.com/milessabin/shapeless/commit/d33938d65acb2aafae7b89df9dd52a955a0c9c8c
 
-[[_TOC_]]
+## Contents
 
-### 1. Required Scala version is now 2.10.2 or later
++ [Required Scala version is now 2.10.2 or later](./Migration-guide:-shapeless-1.2.4-to-2.0.0#required-scala-version-is-now-2102-or-later)
++ [Iso is now Generic](./Migration-guide:-shapeless-1.2.4-to-2.0.0#iso-is-now-generic)
++ [Type class Aux suffix convention change](./Migration-guide:-shapeless-1.2.4-to-2.0.0#type-class-aux-suffix-convention-change)
++ [Import HList type classes from ops.hlist](./Migration-guide:-shapeless-1.2.4-to-2.0.0#import-hlist-type-classes-from-opshlist)
++ [productElements is the new name for hlisted](./Migration-guide:-shapeless-1.2.4-to-2.0.0#productelements-is-the-new-name-for-hlisted)
++ [Conversions between functions and HList functions](./Migration-guide:-shapeless-1.2.4-to-2.0.0#conversions-between-functions-and-hlist-functions)
++ [HList zipped/unzipped now zip/unzip](./Migration-guide:-shapeless-1.2.4-to-2.0.0#hlist-zippedunzipped-now-zipunzip)
++ [Poly and Case naming convention change](./Migration-guide:-shapeless-1.2.4-to-2.0.0#poly-and-case-naming-convention-change)
++ [Import Cases from poly, miscellaneous Polys moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#import-cases-from-poly-miscellaneous-polys-moved)
++ [Record changes](./Migration-guide:-shapeless-1.2.4-to-2.0.0#record-changes)
++ [TypeOperators object removed, most used members moved to shapeless package object](./Migration-guide:-shapeless-1.2.4-to-2.0.0#typeoperators-object-removed-most-used-members-moved-to-shapeless-package-object)
++ [Tagged types and NewType have moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#tagged-types-and-newtype-have-moved)
++ [Nat types and constants now imported from nat, type classes from ops.nat](./Migration-guide:-shapeless-1.2.4-to-2.0.0#nat-types-and-constants-now-imported-from-nat-type-classes-from-opsnat)
++ [Sized type and extension methods moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#sized-type-and-extension-methods-moved)
++ [The Typeable extension methods have moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#the-typeable-extension-methods-have-moved)
+
+### Required Scala version is now 2.10.2 or later
 
 The advantages offered by the availability of implicit macros in Scala 2.10.2 and Scala 2.11.0 have proved to be so
 significant that all current and future shapeless development has committed to them.
@@ -34,7 +50,7 @@ sponsoring such work should [get in touch with me](mailto:miles@milessabin.com).
 
 [macrofix]: https://issues.scala-lang.org/browse/SI-5923
 
-### 2. Iso is now Generic
+### Iso is now Generic
 
 The `Iso` type class from shapeless-1.2.4 has evolved significantly in shapeless-2.0.0. Previously it purported to
 represent an arbitrary isomorphism between a pair of types. In practice however, its almost exclusive use was to map
@@ -116,7 +132,7 @@ between `M` and the argument type `L` is provided by the subsequent implicit wit
 [ghcgeneric]: http://www.haskell.org/haskellwiki/GHC.Generics
 [SI-7470]: https://issues.scala-lang.org/browse/SI-7470
 
-### 3. Type class Aux suffix convention change
+### Type class Aux suffix convention change
 
 The previous shapeless convention of providing two variants of all type classes, one with result types as members and
 one (with an `Aux` suffix) with result types as additional type parameters, has been refined. Now only the definition
@@ -141,7 +157,7 @@ def unzip[L <: HList, OutM <: HList, OutT <: HList](l : L)
   l.map(productElements).transpose.tupled
 ```
 
-### 4. Import HList type classes from ops.hlist
+### Import HList type classes from ops.hlist
 
 Witnesses for `HList` operations are no longer direct members of the `shapeless` package and must be imported
 explicitly,
@@ -153,7 +169,7 @@ import ops.hlist.Prepend // New import
 def usePrepend[L <: HList, M <: HList](l: L, m: M)(implicit prepend: Prepend[L, M]) = l ++ m
 ```
 
-### 5. productElements is the new name for hlisted
+### productElements is the new name for hlisted
 
 The extension method to convert a tuple or a case class to an `HList` is now `productElements` instead of `hlisted` and
 the syntax object must be imported,
@@ -175,7 +191,7 @@ scala> foo.productElements
 res1: Int :: String :: HNil = 23 :: bar :: HNil
 ```
 
-### 6. Conversions between functions and HList functions
+### Conversions between functions and HList functions
 
 The type classes and extension methods for converting between functions of multiple arguments and functions with a
 single `HList` argument have been renamed and the syntax and/or ops object must be imported from.
@@ -211,7 +227,7 @@ scala> applyL(2 :: 3 :: 5 :: HNil, sum3 _)
 res1: Int = 10
 ```
 
-### 7. HList zipped/unzipped now zip/unzip
+### HList zipped/unzipped now zip/unzip
 
 The introduction of `HList`-like operations directly on tuples revealed an unfortunate name clash between the `zipped`
 operation on tuples, which zips multiple collections, and the shapeless operation, which zips the tuples themselves.
@@ -231,7 +247,7 @@ l2: Int :: String :: Boolean :: HNil = 23 :: foo :: true :: HNil
 scala> l1 zip l2  // was 'zipped'
 res0: (Int, Int) :: (Int, String) :: (Int, Boolean) :: HNil = (1,23) :: (2,foo) :: (3,true) :: HNil
 ```
-### 8. Poly and Case naming convention change
+### Poly and Case naming convention change
 
 The `Poly` and `Case` name conventions have been aligned with the new shapeless type class `Aux` suffix convention.
 
@@ -259,7 +275,7 @@ def pairApply(f: Poly)(implicit ci : f.Case1[Int], cs : f.Case1[String]) = (f(23
 def pairApply(f: Poly1)(implicit ci : f.Case[Int], cs : f.Case[String]) = (f(23), f("bar"))
 ```
 
-### 9. Import Cases from poly, miscellaneous Polys moved.
+### Import Cases from poly, miscellaneous Polys moved
 
 Standalone cases of polymorphic functions are no longer direct members of the `shapeless` package and must be imported
 explicitly,
@@ -291,7 +307,7 @@ scala> ((23, "foo"), (), (true, 2.0)) flatMap identity
 res0: (Int, String, Boolean, Double) = (23,foo,true,2.0)
 ```
 
-### 10. Record changes
+### Record changes
 
 `Field[T]` has been renamed to `FieldOf[T]` and fields are now constructed using the `->>` operator which is made
 available on values by importing from `shapeless.syntax.singleton`,
@@ -317,13 +333,13 @@ provided as a second type argument. Whilst this makes sense for the newly suppor
 don't inherently encode their value types, this is perhaps less suitable for `FieldOf` keys which do. This change might
 be reconsidered for M2 ... feedback welcome.
 
-### 11. TypeOperators object removed, most used members moved to shapeless package object
+### TypeOperators object removed, most used members moved to shapeless package object
 
 The most used members of `TypeOperators`, eg. `Id` and `Const`, have been moved to the shapeless package object and are
 now available without prefix whenever the shapeless package has been imported from. All imports from `TypeOperators`
 should be removed.
 
-### 12. Tagged types and NewType have moved
+### Tagged types and NewType have moved
 
 Tagged types and `NewType` are now accessible via the `tag` and `newtype` objects respectively,
 
@@ -367,7 +383,7 @@ scala> ms.size
 It should be noted that, whilst there are still uses for tagged types, most, if not all, uses of newtype can be replaced
 by Scala value classes.
 
-### 13. Nat types and constants now imported from nat, type classes from ops.nat
+### Nat types and constants now imported from nat, type classes from ops.nat
 
 The `Nat` types and constants `_0`, `_1`, ... etc. were previously imported from the `Nat` object. This is now named 
 `nat`. The `Nat` type classes and instances have been moved from the shapeless package to `shapeless.ops.nat`,
@@ -386,7 +402,7 @@ scala> implicitly[Sum.Aux[_2, _3, _5]]
 res0: Sum.Aux[_2, _3, _5] = shapeless.ops.nat$Sum$$anon$3@e037c82
 ```
 
-### 14. Sized type and extension methods moved
+### Sized type and extension methods moved
 
 The `Sized` type is now defined directly in the shapeless namespace and the extension methods for Scala collection types
 have been moved to `syntax.sized`.
@@ -412,7 +428,7 @@ scala> l.take(4)  // Doesn't compile
                                   
 ```
 
-### 15. The Typeable extension methods have moved.
+### The Typeable extension methods have moved
 
 The `Typeable` extension methods have moved to `syntax.typeable`,
 

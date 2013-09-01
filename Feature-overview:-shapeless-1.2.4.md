@@ -2,7 +2,17 @@
 
 All the examples below assume you have previously imported shapeless.\_
 
-[[_TOC_]]
+## Contents
++ [Polymorphic function values](./Feature-overview:-shapeless-1.2.4#polymorphic-function-values)
++ [Scrap your Boilerplate](./Feature-overview:-shapeless-1.2.4#scrap-your-boilerplate)
++ [Type safe cast](./Feature-overview:-shapeless-1.2.4#type-safe-cast)
++ [Heterogenous lists](./Feature-overview:-shapeless-1.2.4#heterogenous-lists)
++ [Facilities for abstracting over arity](./Feature-overview:-shapeless-1.2.4#facilities-for-abstracting-over-arity)
++ [Heterogenous maps](./Feature-overview:-shapeless-1.2.4#heterogenous-maps)
++ [Extensible records](./Feature-overview:-shapeless-1.2.4#extensible-records)
++ [Representation of case classes as HLists](./Feature-overview:-shapeless-1.2.4#representation-of-case-classes-as-hlists)
++ [Sized types](./Feature-overview:-shapeless-1.2.4#sized-types)
++ [Newtype](./Feature-overview:-shapeless-1.2.4#newtype)
 
 ### Polymorphic function values
 
