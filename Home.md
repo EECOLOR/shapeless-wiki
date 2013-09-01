@@ -1,4 +1,4 @@
-<!-- --- title: generic programming for Scala -->
+# shapeless: generic programming for Scala
 
 **shapeless** is a type class and dependent type based generic programming library for Scala. It had its origins in
 several talks by Miles Sabin ([@milessabin][milessabin]), given over the course of 2011, on implementing [scrap your
