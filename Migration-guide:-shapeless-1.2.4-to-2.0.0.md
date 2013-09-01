@@ -6,6 +6,8 @@ found in [this commit][delta].
 
 [delta]: https://github.com/milessabin/shapeless/commit/d33938d65acb2aafae7b89df9dd52a955a0c9c8c
 
+[[_TOC_]]
+
 ### 1. Required Scala version is now 2.10.2 or later
 
 The advantages offered by the availability of implicit macros in Scala 2.10.2 and Scala 2.11.0 have proved to be so
