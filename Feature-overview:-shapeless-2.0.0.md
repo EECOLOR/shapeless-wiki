@@ -695,7 +695,7 @@ column headers provided as colums,
 
 ```scala
 def row(cols : Seq[String]) =
-  cols.mkString("\"", "\", \"", "\"")
+  cols.mkString("\\"", "\\", \\"", "\\"")
 
 def csv[N <: Nat]
   (hdrs : Sized[Seq[String], N],
