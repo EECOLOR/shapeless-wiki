@@ -294,7 +294,7 @@ res0: Int = 3
 
 scala> applyProduct(1, 2, 3)((_: Int)*(_: Int)*(_: Int))
 res1: Int = 6
-```    
+```
 
 ### Heterogenous maps
 
