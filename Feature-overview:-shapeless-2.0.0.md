@@ -694,12 +694,15 @@ In the example below we define a method `csv` whose signature guarantees at comp
 column headers provided as colums,
 
 ```scala
-def row(cols : Seq[String]) = cols.mkString("\"", "\", \"", "\"")
+def row(cols : Seq[String]) =
+  cols.mkString("\"", "\", \"", "\"")
+
 def csv[N <: Nat]
   (hdrs : Sized[Seq[String], N],
    rows : List[Sized[Seq[String], N]]) = row(hdrs) :: rows.map(row(_))
 
 val hdrs = Sized("Title", "Author")
+
 val rows = List(
   Sized("Types and Programming Languages", "Benjamin Pierce"),
   Sized("The Implementation of Functional Programming Languages", "Simon Peyton-Jones")
