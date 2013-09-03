@@ -2,7 +2,7 @@
 
 ## Contents
 + [Polymorphic function values](./Feature-overview:-shapeless-2.0.0#polymorphic-function-values)
-+ [oeterogenous lists](./Feature-overview:-shapeless-2.0.0#heterogenous-lists)
++ [Heterogenous lists](./Feature-overview:-shapeless-2.0.0#heterogenous-lists)
 + [HList-style operations on standard Scala tuples](./Feature-overview:-shapeless-2.0.0#hlist-style-operations-on-standard-scala-tuples)
 + [Facilities for abstracting over arity](./Feature-overview:-shapeless-2.0.0#facilities-for-abstracting-over-arity)
 + [Heterogenous maps](./Feature-overview:-shapeless-2.0.0#heterogenous-maps)
