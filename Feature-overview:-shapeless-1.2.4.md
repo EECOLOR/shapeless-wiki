@@ -1,7 +1,5 @@
 <!-- --- title: Feature overview: shapeless-1.2.4 -->
 
-All the examples below assume you have previously imported shapeless.\_
-
 ## Contents
 + [Polymorphic function values](./Feature-overview:-shapeless-1.2.4#polymorphic-function-values)
 + [Scrap your Boilerplate](./Feature-overview:-shapeless-1.2.4#scrap-your-boilerplate)
@@ -13,6 +11,8 @@ All the examples below assume you have previously imported shapeless.\_
 + [Representation of case classes as HLists](./Feature-overview:-shapeless-1.2.4#representation-of-case-classes-as-hlists)
 + [Sized types](./Feature-overview:-shapeless-1.2.4#sized-types)
 + [Newtype](./Feature-overview:-shapeless-1.2.4#newtype)
+
+All the examples below assume you have previously imported shapeless.\_
 
 ### Polymorphic function values
 
