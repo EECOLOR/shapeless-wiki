@@ -209,7 +209,7 @@ The renamings are as follows,
 
 ```scala
 import shapeless._
-import syntax.std._ // New import
+import syntax.std.function._ // New import
 
 scala> def sum3(a: Int, b: Int, c: Int) = a+b+c
 sum3: (a: Int, b: Int, c: Int)Int
