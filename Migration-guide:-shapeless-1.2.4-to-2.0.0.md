@@ -198,14 +198,14 @@ single `HList` argument have been renamed and the syntax and/or ops object must 
 
 The renamings are as follows,
 
-| shapeless-1.2.4  | shapeless-2.0.0   | &nbsp; 
-|:-----------------|:------------------|--------------------
-| `hlisted`        | `toProduct`       | _Extension methods_
-| `unhlisted`      | `fromProduct`     |
-| `FnHLister`      | `ToProduct`       | _Type classes_
-| `FnHListerAux`   | `ToProduct.Aux`   |
-| `FnUnHLister`    | `FromProduct`     |
-| `FnUnHListerAux` | `FromProduct.Aux` |
+| shapeless-1.2.4  | shapeless-2.0.0     | &nbsp; 
+|:-----------------|:--------------------|--------------------
+| `hlisted`        | `toProduct`         | _Extension methods_
+| `unhlisted`      | `fromProduct`       |
+| `FnHLister`      | `FnToProduct`       | _Type classes_
+| `FnHListerAux`   | `FnToProduct.Aux`   |
+| `FnUnHLister`    | `FnFromProduct`     |
+| `FnUnHListerAux` | `FnFromProduct.Aux` |
 
 ```scala
 import shapeless._
