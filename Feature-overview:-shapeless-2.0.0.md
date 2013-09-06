@@ -515,7 +515,7 @@ object size extends Poly1 {
 scala> isb map size
 res2: (Int, Int) :+: (String, Int) :+: (Boolean, Int) :+: CNil = (foo,3)
 
-scala> res4.select[(String, Int)]
+scala> res2.select[(String, Int)]
 res3: Option[(String, Int)] = Some((foo,3))
 ```
 
