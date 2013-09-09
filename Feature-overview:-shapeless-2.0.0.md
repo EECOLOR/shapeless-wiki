@@ -708,7 +708,7 @@ val rows = List(
   Sized("The Implementation of Functional Programming Languages", "Simon Peyton-Jones")
 )
 
-// hdrs and rows statically known to have the name number of columns
+// hdrs and rows statically known to have the same number of columns
 val formatted = csv(hdrs, rows)                        // Compiles
 
 // extendedHdrs has the wrong number of columns for rows
