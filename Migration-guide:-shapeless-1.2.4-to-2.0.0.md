@@ -23,7 +23,7 @@ found in [this commit][delta].
 + [Nat types and constants now imported from nat, type classes from ops.nat](./Migration-guide:-shapeless-1.2.4-to-2.0.0#nat-types-and-constants-now-imported-from-nat-type-classes-from-opsnat)
 + [Sized type and extension methods moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#sized-type-and-extension-methods-moved)
 + [The Typeable extension methods have moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#the-typeable-extension-methods-have-moved)
-+ [Traversable.toHList has moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#traversable.toHList-has-moved)
++ [Traversable.toHList has moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#traversable-tohlist-has-moved)
 
 ### Required Scala version is now 2.10.2 or later
 
@@ -444,7 +444,7 @@ scala> ("Hello world!" : Any).cast[String]
 res0: Option[String] = Some(Hello world!)
 ```
 
-### traversable.toHList has moved
+### traversable toHList has moved
 
 ```scala
 scala> import shapeless._
