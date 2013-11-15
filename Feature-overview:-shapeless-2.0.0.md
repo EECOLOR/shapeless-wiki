@@ -719,7 +719,7 @@ val badFormatted = csv(extendedHdrs, rows)             // Does not compile
 ### Type safe cast
 
 shapeless provides a `Typeable` type class which provides a type safe cast operation. `cast` returns an `Option` of the
-target type rather than throwing an exception if the value is of the incorrect type, as can happen with separete
+target type rather than throwing an exception if the value is of the incorrect type, as can happen with separate
 `isInstanceOf` and `asInstanceOf` operations. `Typeable` handles primitive values correctly and will recover erased
 types in many circumstances,
 
