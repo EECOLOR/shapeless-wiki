@@ -259,11 +259,11 @@ The new pattern is as follows (where `L <: HList`, `f: Poly`, <code>f<i>n</i>: P
 | <code>CaseAux[f.type, L]</code>                  | <code>Case[f.type, L]                            | _Standalone cases_ 
 | <code>Pullback[f.type, L, R]</code>              | <code>Case.Aux[f.type, L, R]</code>              |
 | <code>Case<i>N</i>Aux[f.type, T, ...]</code>     | <code>Case<i>N</i>[f.type, T, ...]</code>        |
-| <code>Pullback<i>N</i>[f.type, T, ..., R]</code> | <code>Case<i>N</i>.Aux[f.type, T, ..., R]</code> |
+| <code>Pullback<i>N</i>Aux[f.type, T, ..., R]</code> | <code>Case<i>N</i>.Aux[f.type, T, ..., R]</code> |
 | <code>f.Case[L]</code>                           | <code>f.ProductCase[L]</code>                    | _Instance dependent cases_
 | <code>f.Pullback[T, L, R]</code>                 | <code>f.ProductCase.Aux[L, R]</code>             | 
 | <code>f.Case<i>N</i>[T, ...]</code>              | <code>f<i>n</i>.Case[T, ...]</code>              |
-| <code>f.Pullback<i>N</i>[T, ..., R]</code>       | <code>f<i>n</i>.Case.Aux[T, ..., R]</code>       |
+| <code>f.Pullback<i>N</i>Aux[T, ..., R]</code>       | <code>f<i>n</i>.Case.Aux[T, ..., R]</code>       |
 
 This is more consistent with other uses of the `Aux` suffix in shapeless, results in a significantly smaller number of
 class files, simplifies implicit resolution in some cases, and is slightly terser in typical cases.
