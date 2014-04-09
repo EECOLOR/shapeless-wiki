@@ -18,8 +18,8 @@ widely in production systems wherever there are arities to be abstracted over an
 ## Finding out more about the project
 
 A feature overview of shapeless-2.0.0 can be found [[here|Feature-overview:-shapeless-2.0.0]]. If you are upgrading from
-shapeless-1.2.4 you will find the [[release notes|Release-notes:-shapeless-2.0.0-M1]] and [[migration
-guide|Migration-guide:-shapeless-1.2.4-to-2.0.0]] useful.
+shapeless-1.2.4 you will find the [[release notes|Release-notes:-shapeless-2.0.0-M1]] and
+[[migration guide|Migration-guide:-shapeless-1.2.4-to-2.0.0]] useful.
 
 shapeless is part of the [typelevel][] family of projects along with [Scalaz][scalaz] and [Spire][spire]. It is an Open
 Source project under the Apache License v2, hosted on [github][source]. Binary artefacts are published to the [Sonatype
