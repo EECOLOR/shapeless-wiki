@@ -7,13 +7,13 @@ experimental project into library which, while still testing the limits of what'
 widely in production systems wherever there are arities to be abstracted over and boilerplate to be scrapped. 
 
 ## Contents
-+ [Finding out more about the project](./wiki#finding-out-more-about-the-project)
-+ [Using shapeless](./wiki#using-shapeless)
-  + [shapeless-2.0.0-M1](./wiki#shapeless-200-m1)
-  + [shapeless-2.0.0-SNAPSHOT](./wiki#shapeless-200-snapshot)
-  + [shapeless-1.2.4](./wiki#shapeless-124)
-+ [Building shapeless](./wiki#building-shapeless)
-+ [Contributors](./wiki#contributors)
++ [Finding out more about the project](#finding-out-more-about-the-project)
++ [Using shapeless](#using-shapeless)
+  + [shapeless-2.0.0](#shapeless-200)
+  + [shapeless-2.1.0-SNAPSHOT](#shapeless-210-snapshot)
+  + [shapeless-1.2.4](#shapeless-124)
++ [Building shapeless](#building-shapeless)
++ [Contributors](#contributors)
 
 ## Finding out more about the project
 
@@ -73,43 +73,63 @@ resolvers ++= Seq(
 
 [ci]: https://travis-ci.org/milessabin/shapeless
 
-### shapeless-2.0.0-M1
+### shapeless-2.0.0
 
-Builds are available for Scala 2.10.2 and later and Scala 2.11.0-M4. Note that you must specify a Scala version of at
-least 2.10.2, and that you must add either `cross CrossVersion.full` or an explicit Scala version suffix to your
-shapeless dependency,
+Builds are available for Scala 2.10.2 and later and for Scala 2.11.0-RC4. Note that you must specify a Scala version
+of at least 2.10.2, and that for Scala 2.10.x and non-final Scala 2.11.0 releases you must add either
+`cross CrossVersion.full` or provide an explicit Scala version suffix to your shapeless dependency,
 
 ```scala
-scalaVersion := "2.10.2"
-// scalaVersion := "2.11.0-M4" // alternatively ...
+// For Scala 2.10.x >= 2.10.2
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.chuusai" % "shapeless" % "2.0.0-M1" cross CrossVersion.full
-//  "com.chuusai" % "shapeless_2.10.2" % "2.0.0-M1" // alternatively ...
+  "com.chuusai" % "shapeless_2.10.4" % "2.0.0"
+  // "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full  // Alternatively ...
 )
 ```
 
-
-### shapeless-2.0.0-SNAPSHOT
-
-Builds are available for Scala 2.10.2 and later and Scala 2.11.0-SNAPSHOT. Note that you must specify a Scala version of
-at least 2.10.2, and that you must add either `cross CrossVersion.full` or an explicit Scala version suffix to your
-shapeless dependency,
+Note that Scala 2.10.x releases are compatible with each other starting from 2.10.2, so a mismatch in minor versions
+above would be fine.
 
 ```scala
-scalaVersion := "2.10.2"
-// scalaVersion := "2.11.0-SNAPSHOT" // alternatively ...
+// For Scala 2.11.0-RC4
+scalaVersion := "2.11.0-RC4"
 
 libraryDependencies ++= Seq(
-  "com.chuusai" % "shapeless" % "2.0.0-SNAPSHOT" cross CrossVersion.full changing()
-//  "com.chuusai" % "shapeless_2.10.2" % "2.0.0-SNAPSHOT" changing() // alternatively ...
+  "com.chuusai" % "shapeless_2.11.0-RC4" % "2.0.0"
+  // "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full  // Alternatively ...
+)
+```
+
+### shapeless-2.1.0-SNAPSHOT
+
+Builds will be available for Scala 2.10.4 and Scala 2.11.0 shortly after the final release of Scala 2.11.0.
+The main line of development for shapeless 2.1.0 will be Scala 2.11.0 with Scala 2.10.x supported via the macro
+paradise compiler plugin.
+
+```scala
+scalaVersion := "2.11.0"
+
+libraryDependencies ++= Seq(
+  "com.chuusai" %% "shapeless" % "2.1.0-SNAPSHOT" changing()
+)
+```
+
+Note that for Scala 2.10.4 you must provide an explicit Scala version suffix to your shapeless dependency,
+
+```scala
+scalaVersion := "2.10.4"
+
+libraryDependencies ++= Seq(
+  "com.chuusai" % "shapeless_2.10.4" % "2.1.0-SNAPSHOT" changing()
 )
 ```
 
 ### shapeless-1.2.4
 
-Builds are available for Scala 2.9 and 2.10. If you are working with Scala 2.10.2 or later you should use
-shapeless-2.0.0-M1 instead.
+Builds are available for Scala 2.9, 2.10 and 2.11.0-RC4. If you are working with Scala 2.10.2 or later you
+should use shapeless-2.0.0 instead.
 
 If your project is built with Scala 2.9.3 or earlier, then you will need to specify the `-Ydependent-method-types`
 compiler flag,
@@ -124,17 +144,18 @@ libraryDependencies ++= Seq(
 )
 ```
 
-This option isn't necessary or supported in Scala 2.10, so you should omit it if you are building with Scala 2.10.2,
+This option isn't necessary or supported in Scala 2.10, so you should omit it if you are building with Scala 2.10.2 or
+later,
 
 ```scala
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "1.2.4"
 )
 ```
 
-If you want to be able to support building relative to both 2.9.3 and 2.10.2 then you should use the 2.10.2
+If you want to be able to support building relative to both 2.9.3 and 2.10.x then you should use the 2.10.4
 configuration above and add the following,
  
 ```scala
@@ -150,9 +171,9 @@ which will set the `-Ydependent-method-types` compiler flag conditionally on the
 
 ## Building shapeless
 
-shapeless is built with SBT 0.13.0. The master branch is built with Scala 2.10.2 by default. To build with Scala 2.11.0
+shapeless is built with SBT 0.13.1. The master branch is built with Scala 2.10.4 by default. To build with Scala 2.11.0
 you should check out the scala-2.11.x branch. As a general rule all new features and bugfixes are made against master
-and Scala 2.10.2 and merged into the scala-2.11.x branch with only the minimal changes needed for forwards
+and Scala 2.10.4 and merged into the scala-2.11.x branch with only the minimal changes needed for forwards
 compatibility.
 
 ## Contributors
@@ -161,11 +182,14 @@ compatibility.
 + Ben Hutchison <brhutchison@gmail.com> [@ben_hutchison](https://twitter.com/ben_hutchison)
 + Ben James <ben.james@guardian.co.uk> [@bmjames](https://twitter.com/bmjames)
 + Brian McKenna <brian@brianmckenna.org> [@puffnfresh](https://twitter.com/puffnfresh)
-+ Cody Allen <ceedubs@gmail.com>
++ Cody Allen <ceedubs@gmail.com> [@fourierstrick](https://twitter.com/FouriersTrick)
++ Dario Rexin <dario.rexin@r3-tech.de> [@evonox](https://twitter.com/evonox)
 + George Leontiev <folone@gmail.com> [@folone](https://twitter.com/folone)
 + Huw Giddens <hgiddens@gmail.com>
 + Jason Zaugg <jzaugg@gmail.com> [@retronym](https://twitter.com/retronym)
++ Johannes Rudolph <johannes.rudolph@gmail.com> [@virtualvoid](https://twitter.com/virtualvoid)
 + Joni Freeman <joni.freeman@ri.fi> [@jonifreeman](https://twitter.com/jonifreeman)
++ Julien Tournay <jto boudhevil@gmail.com> [@skaalf](https://twitter.com/skaalf)
 + Kevin Wright <kev.lee.wright@gmail.com> [@thecoda](https://twitter.com/thecoda)
 + Lars Hupel <lars.hupel@mytum.de> [@larsr_h](https://twitter.com/larsr_h)
 + Mathias Doenitz <mathias@spray.io> [@sirthias](https://twitter.com/sirthias)
@@ -173,6 +197,8 @@ compatibility.
 + Michael Pilquist <mpilquist@gmail.com> [@mpilquist](https://twitter.com/mpilquist)
 + Miles Sabin <miles@milessabin.com> [@milessabin](https://twitter.com/milessabin)
 + Nikolas Evangelopoulos <nikolas@jkl.gr> 
++ Paolo G. Giarrusso <p.giarrusso@gmail.com> [@blaisorblade](https://twitter.com/blaisorblade)
 + Stacy Curl <stacy.curl@gmail.com>
++ Stephen Compall <scompall@nocandysw.com> [@S11001001](https://twitter.com/S11001001)
 + Tom Switzer <thomas.switzer@gmail.com> [@tixxit](https://twitter.com/tixxit)
 + Travis Brown <travisrobertbrown@gmail.com> [@travisbrown](https://twitter.com/travisbrown)
