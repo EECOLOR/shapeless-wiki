@@ -31,15 +31,15 @@ The advantages offered by the availability of implicit macros in Scala 2.10.2 an
 significant that all current and future shapeless development has committed to them.
 
 Note that releases prior to 2.10.2 in the 2.10.x series don't include the relevant [implicit macro bugfix][macrofix], so
-relying on major release binary compatibility isn't sufficient: you will need to specify Scala version 2.10.2 and
+relying on major release binary compatibility isn't sufficient: you will need to specify Scala version 2.10.4 and
 depend on shapeless using the full cross version,
 
 ```scala
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.chuusai" % "shapeless" % "2.0.0-M1" cross CrossVersion.full
-  // "com.chuusai" % "shapeless_2.10.2" % "2.0.0-M1" // Alternatively ...
+  "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full
+  // "com.chuusai" % "shapeless_2.10.4" % "2.0.0" // Alternatively ...
 )
 ```
 
@@ -92,7 +92,7 @@ def hd[T, L <: HList](t: T)(implicit gen: Generic.Aux[T, L], ihc: IsHCons[L]) = 
 hd(foo) // 23
 ```
 
-Note that due to limitations with implicit macros in Scala 2.10.2 the representation type must be treated only as an
+Note that due to limitations with implicit macros in Scala 2.10.4 the representation type must be treated only as an
 output and cannot be used to contrain the mapping. This means that constructs like the following, which were valid with
 shapeless 1.2.4,
 
@@ -263,7 +263,7 @@ The new pattern is as follows (where `L <: HList`, `f: Poly`, <code>f<i>n</i>: P
 | <code>f.Case[L]</code>                           | <code>f.ProductCase[L]</code>                    | _Instance dependent cases_
 | <code>f.Pullback[T, L, R]</code>                 | <code>f.ProductCase.Aux[L, R]</code>             | 
 | <code>f.Case<i>N</i>[T, ...]</code>              | <code>f<i>n</i>.Case[T, ...]</code>              |
-| <code>f.Pullback<i>N</i>Aux[T, ..., R]</code>       | <code>f<i>n</i>.Case.Aux[T, ..., R]</code>       |
+| <code>f.Pullback<i>N</i>Aux[T, ..., R]</code>    | <code>f<i>n</i>.Case.Aux[T, ..., R]</code>       |
 
 This is more consistent with other uses of the `Aux` suffix in shapeless, results in a significantly smaller number of
 class files, simplifies implicit resolution in some cases, and is slightly terser in typical cases.
