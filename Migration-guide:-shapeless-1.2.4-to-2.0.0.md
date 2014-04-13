@@ -24,6 +24,8 @@ found in [this commit][delta].
 + [Sized type and extension methods moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#sized-type-and-extension-methods-moved)
 + [The Typeable extension methods have moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#the-typeable-extension-methods-have-moved)
 + [Traversable.toHList has moved](./Migration-guide:-shapeless-1.2.4-to-2.0.0#traversable-tohlist-has-moved)
++ [The Lens builder has been renamed](./Migration-guide:-shapeless-1.2.4-to-2.0.0#the-lens-builder-has-been-renamed)
++ [Zipper repackaged into ops and syntax](./Migration-guide:-shapeless-1.2.4-to-2.0.0#zipper-repackaged-into-ops-and-syntax)
 
 ### Required Scala version is now 2.10.2 or later
 
@@ -456,3 +458,48 @@ import syntax.std.traversable._
 scala> List(1,"one").toHList[Int :: String :: HNil]
 res0: Option[shapeless.::[Int,shapeless.::[String,shapeless.HNil]]] = Some(1 :: one :: HNil)
 ```
+
+### The Lens builder has been renamed
+
+```scala
+scala> import shapeless._
+import shapeless._
+
+scala> case class Foo(i: Int, s: String)
+defined class Foo
+
+scala> val iLens = lens[Foo] >> 'i   // Was Lens[Foo]
+iLens: shapeless.Lens[Foo,Int] ...
+
+scala> val foo = Foo(23, "bar")
+foo: Foo = Foo(23,bar)
+
+scala> iLens.set(foo)(13)
+res1: Foo = Foo(13,bar)
+```
+
+### Zipper repackaged into ops and syntax
+
+The `Zipper` extension method has been moved to `syntaz.zipper`. Also the witnesses for `Zipper` operations have
+been moved to ops.zipper, and so must be imported if they are to be mentioned explicitly,
+
+```scala
+scala> import shapeless._
+import shapeless._
+
+scala> import syntax.zipper._   // New import
+import syntax.zipper._
+
+scala> case class Foo(i: Int, s: String)
+defined class Foo
+
+scala> val foo = Foo(23, "foo")
+foo: Foo = Foo(23,foo)
+
+scala> val fz = foo.toZipper
+fz: shapeless.Zipper ... = Zipper(HNil,23 :: foo :: HNil,None)
+
+scala> fz.right.get
+res0: String = foo
+```
+
