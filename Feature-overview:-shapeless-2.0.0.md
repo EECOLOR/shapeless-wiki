@@ -7,6 +7,7 @@
 + [Facilities for abstracting over arity](./Feature-overview:-shapeless-2.0.0#facilities-for-abstracting-over-arity)
 + [Heterogenous maps](./Feature-overview:-shapeless-2.0.0#heterogenous-maps)
 + [Singleton-typed literals](./Feature-overview:-shapeless-2.0.0#singleton-typed-literals)
++ [Singleton-typed Symbols](./Feature-overview:-shapeless-2.0.0#singleton-typed-symbols)
 + [Extensible records](./Feature-overview:-shapeless-2.0.0#extensible-records)
 + [Coproducts](./Feature-overview:-shapeless-2.0.0#coproducts)
 + [Generic representation of (sealed families of) case classes](./Feature-overview:-shapeless-2.0.0#generic-representation-of-sealed-families-of-case-classes)
@@ -416,6 +417,25 @@ res3: String = foo
 
 [literaltype]: http://existentialtype.net/2008/07/21/literally-dependent-types/
 [singletons]: https://github.com/milessabin/shapeless/blob/master/core/src/test/scala/shapeless/singletons.scala
+
+
+### Singleton-typed Symbols
+
+Scala's `Symbol` type, despite having it's own syntax and being isomorphic to the `String` type, isn't equipped with
+useful singeleton-typed literals. An encoding of singleton types for Symbol literals has proven to valuable (see
+below), and is represented by tagging the non-singleton type with the singleton type of the corresponding String
+literal,
+
+```scala
+scala> import syntax.singleton._
+import syntax.singleton._
+
+scala> 'foo          // non-singleton type
+res0: Symbol = 'foo
+
+scala> 'foo.narrow   // singleton type
+res1: Symbol with shapeless.tag.Tagged[String("foo")] = 'foo
+```
 
 
 ### Extensible records
