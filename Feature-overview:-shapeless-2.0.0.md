@@ -411,7 +411,7 @@ scala> select(false)(23)
                             ^
 
 scala> select(false)("foo")
-res5: String = foo
+res3: String = foo
 ```
 
 [literaltype]: http://existentialtype.net/2008/07/21/literally-dependent-types/
