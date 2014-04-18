@@ -1,5 +1,3 @@
-<!-- --- title: Feature overview: shapeless-2.0.0 -->
-
 ## Contents
 + [Polymorphic function values](./Feature-overview:-shapeless-2.0.0#polymorphic-function-values)
 + [Heterogenous lists](./Feature-overview:-shapeless-2.0.0#heterogenous-lists)
