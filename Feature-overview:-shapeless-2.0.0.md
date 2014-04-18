@@ -7,7 +7,7 @@
 + [Singleton-typed literals](./Feature-overview:-shapeless-2.0.0#singleton-typed-literals)
 + [Singleton-typed Symbols](./Feature-overview:-shapeless-2.0.0#singleton-typed-symbols)
 + [Extensible records](./Feature-overview:-shapeless-2.0.0#extensible-records)
-+ [Coproducts](./Feature-overview:-shapeless-2.0.0#coproducts)
++ [Coproducts and discriminated unions](./Feature-overview:-shapeless-2.0.0#coproducts-and-discriminated-unions)
 + [Generic representation of (sealed families of) case classes](./Feature-overview:-shapeless-2.0.0#generic-representation-of-sealed-families-of-case-classes)
 + [Boilerplate-free lenses for arbitrary case classes](./Feature-overview:-shapeless-2.0.0#boilerplate-free-lenses-for-arbitrary-case-classes)
 + [Automatic type class instance derivation](./Feature-overview:-shapeless-2.0.0#automatic-type-class-instance-derivation)
@@ -506,7 +506,7 @@ records.
 [sqltyped]: https://github.com/jonifreeman/sqltyped 
 [sqltypedeg]: https://github.com/jonifreeman/sqltyped/blob/shapeless_records/core/src/test/scala/examples.scala
 
-### Coproducts
+### Coproducts and discriminated unions
 
 shapeless has a Coproduct type, a generalization of Scala's `Either` to an arbitrary number of choices. Currently it
 exists primarily to support `Generic` (see the next section), but will be expanded analogously to `HList` in later
@@ -537,6 +537,35 @@ res2: (Int, Int) :+: (String, Int) :+: (Boolean, Int) :+: CNil = (foo,3)
 scala> res2.select[(String, Int)]
 res3: Option[(String, Int)] = Some((foo,3))
 ```
+
+In the same way that adding labels to the elements of an `HList` gives us a record, adding labels to the elements of a
+`Coproduct` gives us a discriminated union,
+
+```scala
+scala> import record.RecordType, syntax.singleton._, union._
+import record.RecordType
+import syntax.singleton._
+import union._
+
+scala> val uSchema = RecordType.like('i ->> 23 :: 's ->> "foo" :: 'b ->> true :: HNil)
+scala> type U = uSchema.Union
+defined type alias U
+
+scala> val u = Coproduct[U]('s ->> "foo")  // Inject a String into the union at label 's
+u: U = foo
+
+scala> u.get('i)   // Nothing at 'i
+res0: Option[Int] = None
+
+scala> u.get('s)   // Something at 's
+res1: Option[String] = Some(foo)
+
+scala> u.get('b)   // Nothing at 'b
+res2: Option[Boolean] = None
+```
+
+Currently these exist primarily to support LabelledGeneric but, like `Coproduct`s and records, will be further
+developed in future releases.
 
 ### Generic representation of (sealed families of) case classes
 
