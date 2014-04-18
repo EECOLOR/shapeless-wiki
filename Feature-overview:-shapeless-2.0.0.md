@@ -11,7 +11,7 @@
 + [Generic representation of (sealed families of) case classes](./Feature-overview:-shapeless-2.0.0#generic-representation-of-sealed-families-of-case-classes)
 + [Boilerplate-free lenses for arbitrary case classes](./Feature-overview:-shapeless-2.0.0#boilerplate-free-lenses-for-arbitrary-case-classes)
 + [Automatic type class instance derivation](./Feature-overview:-shapeless-2.0.0#automatic-type-class-instance-derivation)
-+ [First class lazy values tie implicit recursive knots](./Feature-overview:-shapeless-2.0.0#first-class-lazy-values-tie-impliict-recursive-knots)
++ [First class lazy values tie implicit recursive knots](./Feature-overview:-shapeless-2.0.0#first-class-lazy-values-tie-implicit-recursive-knots)
 + [Collections with statically known sizes](./Feature-overview:-shapeless-2.0.0#collections-with-statically-known-sizes)
 + [Type safe cast](./Feature-overview:-shapeless-2.0.0#type-safe-cast)
 + [Testing for non-compilation](./Feature-overview:-shapeless-2.0.0#testing-for-non-compilation)
