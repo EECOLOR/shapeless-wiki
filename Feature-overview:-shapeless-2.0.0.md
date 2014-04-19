@@ -145,7 +145,7 @@ res1: Int = 11
 It also has a zipper for traversal and persistent update,
     
 ```scala
-import Zipper._
+import syntax.zipper._
 
 scala> val l = 1 :: "foo" :: 3.0 :: HNil
 l: Int :: String :: Double :: HNil = 1 :: foo :: 3.0 :: HNil
@@ -269,7 +269,7 @@ scala> (23, "foo", true).toList
 res12: List[Any] = List(23, foo, true)
 
 // zipper
-import Zipper._
+import syntax.zipper._
 
 scala> (23, ("foo", true), 2.0).toZipper.right.down.put("bar").root.reify
 res13: (Int, (String, Boolean), Double) = (23,(bar,true),2.0)
