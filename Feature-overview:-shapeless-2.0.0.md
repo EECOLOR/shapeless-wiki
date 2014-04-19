@@ -698,12 +698,14 @@ person4: Person = Person(Joe Grey,39,Address(Montpelier Road,Brighton,BN2 9UA))
 
 ### Automatic type class instance derivation
 
-Based on and extending `Generic`, Lars Hupel ([@larsr_h][larsh])has contributed the `TypeClass` type class, which provides automatic type
-class derivation facilities roughly equivalent to those available with GHC as described in ["A Generic Deriving
-Mechanism for Haskell"][genericderiving].  There is a description of the Scala mechanism [here][larshderiving], and
-examples of its use deriving `Show` and `Monoid` instances [here][show] and [here][monoid]. In the `Monoid` case, once
-the general deriving infrastructure for monoids is in place, instances are automatically available for arbitrary case
-classes without any additional boilerplate,
+Based on and extending `Generic` and `LabelledGeneric`, Lars Hupel ([@larsr_h][larsh])has contributed the `TypeClass`
+family of type classes, which provide automatic type class derivation facilities roughly equivalent to those available
+with GHC as described in ["A Generic Deriving Mechanism for Haskell"][genericderiving].  There is a description of an
+earlier iteration of the Scala mechanism [here][larshderiving], and examples of its use deriving `Show` and `Monoid`
+instances [here][show] and [here][monoid] for labelled coproducts and unlabelled products respectively.
+
+For example, in the `Monoid` case, once the general deriving infrastructure for monoids is in place, instances are
+automatically available for arbitrary case classes without any additional boilerplate,
 
 ```scala
 import MonoidSyntax._
