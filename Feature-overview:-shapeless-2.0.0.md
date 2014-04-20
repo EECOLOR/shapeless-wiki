@@ -651,6 +651,44 @@ everywhere(inc)(tree)
 //   )
 ```
 
+A natural extension of `Generic`'s mapping of the content of data types onto a sum of products representation is to
+a mapping of the data type including its constructor and field names onto a labelled sum of products repesentation,
+ie. a representation in terms of the discriminated unions and records that we saw above. This is provided by
+`LabelledGeneric`. Currently it provides the underpinnings for the use of shapeless lenses with symbolic path
+selectors (see next section) and it is expected that it will support many scenarios which would otherwise require the
+support of hard to maintain special case macros.
+
+```scala
+scala> import record._, syntax.singleton._
+import record._
+import syntax.singleton._
+
+scala> case class Book(author: String, title: String, id: Int, price: Double)
+defined class Book
+
+scala> val bookGen = LabelledGeneric[Book]
+
+scala> val tapl = Book("Benjamin Pierce", "Types and Programming Languages", 262162091, 44.11)
+tapl: Book = Book(Benjamin Pierce,Types and Programming Languages,262162091,44.11)
+
+scala> val rec = bookGen.to(tapl) // Convert case class value to generic representation
+rec: bookGen.Repr = Benjamin Pierce :: Types and Programming Languages :: 262162091 :: 44.11 :: HNil
+
+scala> rec('price) // Access the price field symbolically, maintaining type information
+res0: Double = 44.11
+
+scala> bookGen.from(rec.updateWith('price)(_+2.0)) // type safe operations on fields
+res1: Book = Book(Benjamin Pierce,Types and Programming Languages,262162091,46.11)
+
+scala> case class ExtendedBook(author: String, title: String, id: Int, price: Double, inPrint: Boolean)
+defined class ExtendedBook
+
+scala> val bookExtGen = LabelledGeneric[ExtendedBook]
+
+scala> bookExtGen.from(rec + ('inPrint ->> true))  // map values between case classes via generic representation
+res2: ExtendedBook = ExtendedBook(Benjamin Pierce,Types and Programming Languages,262162091,44.11,true)
+```
+
 [ghcgeneric]: http://www.haskell.org/haskellwiki/GHC.Generics
 [sybclass]: https://github.com/milessabin/shapeless/blob/master/examples/src/main/scala/shapeless/examples/sybclass.scala
 [zipper]: https://github.com/milessabin/shapeless/blob/master/examples/src/main/scala/shapeless/examples/zipper.scala
@@ -659,8 +697,8 @@ everywhere(inc)(tree)
 
 ### Boilerplate-free lenses for arbitrary case classes
 
-A combination of `Generic` and singleton-typed `Symbol` literals supports boilerplate-free lens creation for arbitrary
-case classes,
+A combination of `LabelledGeneric` and singleton-typed `Symbol` literals supports boilerplate-free lens creation for
+arbitrary case classes,
 
 ```scala
 import shapeless._
