@@ -906,7 +906,7 @@ scala> (l: Any) match {
 res0: Int = 2
 ```
 
-The equivalnent pattern match without `Typeable`/`TypeCase` would result in a compile-time warning about the erasure
+The equivalent pattern match without `Typeable`/`TypeCase` would result in a compile-time warning about the erasure
 of the list's type parameter, then at runtime spuriously match the `List[String]` case and fail with a
 `ClassCastException` while attempting to evaluate its right hand side.
 
