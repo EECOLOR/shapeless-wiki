@@ -736,7 +736,7 @@ person4: Person = Person(Joe Grey,39,Address(Montpelier Road,Brighton,BN2 9UA))
 
 ### Automatic type class instance derivation
 
-Based on and extending `Generic` and `LabelledGeneric`, Lars Hupel ([@larsr_h][larsh])has contributed the `TypeClass`
+Based on and extending `Generic` and `LabelledGeneric`, Lars Hupel ([@larsr_h][larsh]) has contributed the `TypeClass`
 family of type classes, which provide automatic type class derivation facilities roughly equivalent to those available
 with GHC as described in ["A Generic Deriving Mechanism for Haskell"][genericderiving].  There is a description of an
 earlier iteration of the Scala mechanism [here][larshderiving], and examples of its use deriving `Show` and `Monoid`
