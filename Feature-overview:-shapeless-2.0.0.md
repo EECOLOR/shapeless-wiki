@@ -257,7 +257,7 @@ res8: (Option[Int], Option[String], Option[Boolean]) = (Some(23),Some(foo),Some(
 scala> ((23, "foo"), (), (true, 2.0)) flatMap identity
 res9: (Int, String, Boolean, Double) = (23,foo,true,2.0)
 
-// fold (using previous definition of addSize
+// fold (using previous definition of addSize)
 scala> (23, "foo", (13, "wibble")).foldLeft(0)(addSize)
 res10: Int = 11
 
