@@ -61,7 +61,7 @@ touch](mailto:miles@milessabin.com).
 ## Using shapeless
 
 Binary release artefacts are published to the [Sonatype OSS Repository Hosting service][sonatype] and synced to Maven
-Central. Snapshots of the master and scala-2.11.x branches are built using [Travis CI][ci] and automatically published
+Central. Snapshots of the master and scala-2.10.x branches are built using [Travis CI][ci] and automatically published
 to the Sonatype OSS Snapshot repository. To include the Sonatype repositories in your SBT build you should add,
 
 ```scala
@@ -75,9 +75,19 @@ resolvers ++= Seq(
 
 ### shapeless-2.0.0
 
-Builds are available for Scala 2.10.2 and later and for Scala 2.11.0-RC4. Note that you must specify a Scala version
-of at least 2.10.2, and that for Scala 2.10.x and non-final Scala 2.11.0 releases you must add either
-`cross CrossVersion.full` or provide an explicit Scala version suffix to your shapeless dependency,
+Builds are available for Scala 2.11.0 and later and for Scala 2.10.4.
+
+```scala
+// For Scala 2.11.0
+scalaVersion := "2.11.0"
+
+libraryDependencies ++= Seq(
+  "com.chuusai" %% "shapeless" % "2.0.0"
+)
+```
+
+For Scala 2.10.x you must specify a Scala version of at least 2.10.2, and add either `cross CrossVersion.full` or
+provide an explicit Scala version suffix to your shapeless dependency,
 
 ```scala
 // For Scala 2.10.x >= 2.10.2
@@ -92,21 +102,10 @@ libraryDependencies ++= Seq(
 Note that Scala 2.10.x releases are compatible with each other starting from 2.10.2, so a mismatch in minor versions
 above would be fine.
 
-```scala
-// For Scala 2.11.0-RC4
-scalaVersion := "2.11.0-RC4"
-
-libraryDependencies ++= Seq(
-  "com.chuusai" % "shapeless_2.11.0-RC4" % "2.0.0"
-  // "com.chuusai" % "shapeless" % "2.0.0" cross CrossVersion.full  // Alternatively ...
-)
-```
-
 ### shapeless-2.1.0-SNAPSHOT
 
-Builds will be available for Scala 2.10.4 and Scala 2.11.0 shortly after the final release of Scala 2.11.0.
-The main line of development for shapeless 2.1.0 will be Scala 2.11.0 with Scala 2.10.x supported via the macro
-paradise compiler plugin.
+Builds are available for Scala 2.11.0 and Scala 2.10.4. The main line of development for shapeless 2.1.0 will be Scala
+2.11.0 with Scala 2.10.x supported via the macro paradise compiler plugin.
 
 ```scala
 scalaVersion := "2.11.0"
@@ -128,8 +127,8 @@ libraryDependencies ++= Seq(
 
 ### shapeless-1.2.4
 
-Builds are available for Scala 2.9, 2.10 and 2.11.0-RC4. If you are working with Scala 2.10.2 or later you
-should use shapeless-2.0.0 instead.
+Builds are available for Scala 2.9, 2.10 and 2.11.0. If you are working with Scala 2.10.2 or later you should use
+shapeless-2.0.0 instead.
 
 If your project is built with Scala 2.9.3 or earlier, then you will need to specify the `-Ydependent-method-types`
 compiler flag,
@@ -144,8 +143,8 @@ libraryDependencies ++= Seq(
 )
 ```
 
-This option isn't necessary or supported in Scala 2.10, so you should omit it if you are building with Scala 2.10.2 or
-later,
+This option isn't necessary or supported in Scala 2.10 and later, so you should omit it if you are building with
+Scala 2.10.2 or later,
 
 ```scala
 scalaVersion := "2.10.4"
@@ -155,7 +154,7 @@ libraryDependencies ++= Seq(
 )
 ```
 
-If you want to be able to support building relative to both 2.9.3 and 2.10.x then you should use the 2.10.4
+If you want to be able to support building relative to both 2.9.3 and 2.10 and later then you should use the 2.10.4
 configuration above and add the following,
  
 ```scala
@@ -171,9 +170,9 @@ which will set the `-Ydependent-method-types` compiler flag conditionally on the
 
 ## Building shapeless
 
-shapeless is built with SBT 0.13.1. The master branch is built with Scala 2.10.4 by default. To build with Scala 2.11.0
-you should check out the scala-2.11.x branch. As a general rule all new features and bugfixes are made against master
-and Scala 2.10.4 and merged into the scala-2.11.x branch with only the minimal changes needed for forwards
+shapeless is built with SBT 0.13.2. The master branch is built with Scala 2.11.0 by default. To build with Scala 2.10.x
+you should check out the scala-2.10.x branch. As a general rule all new features and bugfixes are made against master
+and Scala 2.11.0 and merged into the scala-2.10.x branch with only the minimal changes needed for forwards
 compatibility.
 
 ## Contributors
