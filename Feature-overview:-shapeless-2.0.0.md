@@ -160,7 +160,7 @@ scala> l.toZipper.last.left.insert("bar").reify
 res2: Int :: String :: String :: Double :: HNil = 1 :: foo :: bar :: 3.0 :: HNil
 ```
 
-It is is covariant,
+It is covariant,
 
 ```scala
 trait Fruit
