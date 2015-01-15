@@ -89,7 +89,7 @@ hd(foo) // 23
 
 // shapeless 2.0.0
 
-def hd[T, L <: HList](t: T)(implicit gen: Generic.Aux[T, L], ihc: IsHCons[L]) = iso.to(t).head
+def hd[T, L <: HList](t: T)(implicit gen: Generic.Aux[T, L], ihc: IsHCons[L]) = gen.to(t).head
 
 hd(foo) // 23
 ```
